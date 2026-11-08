@@ -1,0 +1,41 @@
+{
+  "id": "40qh5rkw6g",
+  "name": {
+    "tr": "Hizmetler",
+    "en": "Services",
+    "ar": "الخدمات"
+  },
+  "description": {
+    "tr": "Portre, aile, ürün, mimari ve etkinlik fotoğrafçılığı.",
+    "en": "Portrait, family, product, architecture and event photography.",
+    "ar": "تصوير البورتريه والعائلة والمنتجات والعمارة والفعاليات."
+  },
+  "keyword": {
+    "tr": "fotoğraf çekimi, hizmetler",
+    "en": "photo shoot, services",
+    "ar": "جلسات تصوير، خدمات"
+  },
+  "path": "hizmetler",
+  "icon": "camera_alt",
+  "category": "",
+  "status": "play",
+  "desing": {
+    "header": [],
+    "body": [
+      "dm8fvo",
+      "b1x9k3",
+      "1fkce3"
+    ],
+    "footer": []
+  },
+  "index": 2,
+  "url": "",
+  "text": {},
+  "title": {
+    "tr": "Hizmetler",
+    "en": "Services",
+    "ar": "الخدمات"
+  },
+  "date": "2026-10-31T15:05:44.513Z",
+  "update": "2026-11-05T19:39:06.613Z"
+}

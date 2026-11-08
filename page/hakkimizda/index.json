@@ -1,0 +1,47 @@
+{
+  "name": {
+    "tr": "Hakkımda",
+    "en": "About",
+    "ar": "نبذة عني"
+  },
+  "status": "play",
+  "category": "",
+  "id": "hakkimizda",
+  "url": "",
+  "path": "hakkimda",
+  "index": 5,
+  "icon": "person",
+  "desing": {
+    "header": [],
+    "body": [
+      "yjxbma",
+      "ywckaa"
+    ],
+    "footer": []
+  },
+  "pathnext": "",
+  "description": {
+    "tr": "Fotoğrafçı Nehir Kaya hakkında (kurgusal).",
+    "en": "About photographer Nehir Kaya (fictional).",
+    "ar": "عن المصوّرة نهير كايا (افتراضي)."
+  },
+  "spot": {
+    "tr": "",
+    "en": "",
+    "ar": ""
+  },
+  "desc": {},
+  "title": {
+    "tr": "Hakkımda",
+    "en": "About",
+    "ar": "نبذة عني"
+  },
+  "keyword": {
+    "tr": "hakkımda, fotoğrafçı",
+    "en": "about, photographer",
+    "ar": "نبذة عني، مصوّر"
+  },
+  "text": {},
+  "update": "2026-11-05T19:39:06.625Z",
+  "date": "2026-10-30"
+}

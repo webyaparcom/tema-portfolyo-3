@@ -1,0 +1,29 @@
+{
+  "name": "Gölge ve Işık",
+  "short_name": "Gölge ve Işı",
+  "description": "Gölge ve Işık: Gaziantep merkezli kurgusal fotoğrafçı Nehir Kaya. Portre, sokak, mimari ve ürün fotoğrafçılığı; çekim paketleri ve çevrimiçi rezervasyon. (Demo site)",
+  "start_url": "/tr/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#136F63",
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "/img/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
