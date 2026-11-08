@@ -1,0 +1,54 @@
+{
+  "order": false,
+  "user": false,
+  "description": {
+    "tr": "Gölge ve Işık: Gaziantep merkezli kurgusal fotoğrafçı Nehir Kaya. Portre, sokak, mimari ve ürün fotoğrafçılığı; çekim paketleri ve çevrimiçi rezervasyon. (Demo site)",
+    "en": "Golge ve Isik: fictional photographer Nehir Kaya, based in Gaziantep. Portrait, street, architecture and product photography; shoot packages and online booking. (Demo site)",
+    "ar": "غولغه وإيشيك: المصوّرة الافتراضية نهير كايا من غازي عنتاب. تصوير بورتريه وشوارع وعمارة ومنتجات، مع باقات تصوير وحجز عبر الإنترنت. (موقع تجريبي)"
+  },
+  "keyword": {
+    "tr": "fotoğrafçı, portfolyo, portre, mimari fotoğraf, çekim rezervasyonu",
+    "en": "photographer, portfolio, portrait, architectural photography, shoot booking",
+    "ar": "مصوّر، معرض أعمال، بورتريه، تصوير معماري، حجز جلسة"
+  },
+  "category": "Galeri",
+  "name": "Gölge ve Işık",
+  "domain": "portfolyo-3.webyapar.com",
+  "langs": {
+    "tr": true,
+    "en": true,
+    "ar": true,
+    "de": false,
+    "ru": false,
+    "es": false,
+    "fr": false,
+    "it": false,
+    "ja": false,
+    "zh": false,
+    "ko": false,
+    "pt": false
+  },
+  "logo": "logo.png",
+  "multi": false,
+  "publishMode": "static",
+  "font": {
+    "body": "lora",
+    "heading": "cormorant-garamond",
+    "ar": {
+      "body": "ibm-plex-sans-arabic",
+      "heading": "noto-naskh-arabic"
+    }
+  },
+  "colorScheme": "auto",
+  "theme_color": "#136F63",
+  "seo": {
+    "noindex": true
+  },
+  "cssTokens": {
+    "--mx-radius-sm": "0px",
+    "--mx-radius-md": "0px",
+    "--mx-radius-lg": "0px",
+    "--mx-radius-xl": "0px"
+  },
+  "icon": "icon.png"
+}
