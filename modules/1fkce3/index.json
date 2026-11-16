@@ -36,7 +36,7 @@
     "hours": "",
     "hoursLabel": "",
     "bg": "var(--mx-site-primary, #2563eb)",
-    "text": "var(--mx-site-primary-contrast, #ffffff)",
+    "yaziRenk": "var(--mx-site-primary-contrast, #ffffff)",
     "muted": "color-mix(in srgb, var(--mx-site-primary-contrast, #ffffff) 92%, var(--mx-site-primary, #2563eb))",
     "kartBg": "color-mix(in srgb, var(--mx-site-primary-contrast, #ffffff) 10%, transparent)",
     "cizgi": "color-mix(in srgb, var(--mx-site-primary-contrast, #ffffff) 28%, transparent)",

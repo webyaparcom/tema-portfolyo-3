@@ -76,21 +76,57 @@ for (const r of sSatir) {
   if (maks > 0 && kayitlar.length > maks) break;
   if (!r || r.status !== "play" || (r.category || "") !== "") continue;
   const a = pick(r.name).trim();
-  if (a) kayitlar.push({ ad: a, url: wxLangInternalHref(r.pathnext || r.path || ""), aktif: !!sayfa.path && sayfa.path === r.path, dis: false });
+  if (a) kayitlar.push({ ad: a, url: wxLangInternalHref(r.pathnext || r.path || ""), aktif: !!sayfa.path && sayfa.path === r.path, dis: false, kaynak: r });
+}
+/* alt sayfalar (menu-2 kalıbı): category === üst sayfa id'si olan yayındaki sayfalar + üst sayfanın path/id adlı veri kovası.
+   Yalnız navH(…, altli=true) çağıran modüller açılır alt menü basar; diğerlerinin çıktısı değişmez. */
+let altMaks = parseInt(des.maxalt, 10);
+if (!Number.isFinite(altMaks) || altMaks <= 0) altMaks = 12;
+const SISTEM = ["setting", "desing", "modules", "pagesetting", "products", ps ? ps.path : ""];
+for (const k of kayitlar) {
+  const r = k.kaynak;
+  delete k.kaynak;
+  k.alt = [];
+  if (!r) continue;
+  const gor = {};
+  const it = (x) => {
+    if (!x || x.status !== "play" || k.alt.length >= altMaks) return;
+    const anah = String(x.id ?? "") || String(x.path ?? "");
+    const ad = pick(x.name).trim();
+    if (!anah || gor[anah] || !ad) return;
+    gor[anah] = 1;
+    const slug = String(x.pathnext || "").trim() || String(x.path || "");
+    k.alt.push({ ad: ad, url: wxLangInternalHref(slug), aktif: !!sayfa.path && (sayfa.path === x.path || sayfa.path === x.pathnext), dis: false });
+  };
+  for (const kova of [r.path, r.id]) {
+    if (!kova || SISTEM.indexOf(String(kova)) !== -1) continue;
+    const d = webmakerdata?.[kova]?.data;
+    if (Array.isArray(d) && d.length) { d.forEach(it); break; }
+  }
+  if (r.id != null && r.id !== "") sSatir.forEach((x) => { if (x && x.category === r.id) it(x); });
+  if (k.alt.some((x) => x.aktif)) k.dalAktif = true;
 }
 veri.forEach((o) => {
   const a = metinAl(o, ["ad", "name", "text", "baslik", "title"]);
   const u = href(ilk(o, ["url", "href", "link"]));
   if (a && u) kayitlar.push({ ad: a, url: u, aktif: false, dis: /^(https?:)?\/\//i.test(u) });
 });
-const ctaAd = metinAl(des, ["cta_ad", "cta", "button"]);
-const ctaUrl = href(ilk(des, ["cta_url", "buttonurl"]));
+const ctaAd = metinAl(des, ["cta_ad", "cta", "button", "ctaText"]);
+const ctaUrl = href(ilk(des, ["cta_url", "buttonurl", "ctaHref"]));
 const tel = metinAl(des, ["tel", "phone", "telefon"]) || (typeof setting.phone === "string" ? setting.phone.trim() : "");
 const posta = metinAl(des, ["eposta", "email"]) || (typeof setting.email === "string" ? setting.email.trim() : "");
 /* --- parça üreticileri --- */
 const bagA = (k, s) => `<a class="${P}-${s || "oge"}" href="${esc(k.url)}"${k.aktif ? ' aria-current="page"' : ""}${k.dis ? ' target="_blank" rel="noopener noreferrer"' : ""}>${esc(k.ad)}</a>`;
-const navH = (s, dizi, oge) => `<ul class="${P}-${s || "liste"}">${(dizi || kayitlar).map((k) => `<li>${bagA(k, oge)}</li>`).join("")}</ul>`;
-const logoH = (s) => `<a class="${P}-${s || "logo"}" href="/{{lang}}/" aria-label="@home@ - {{web-name}}">${String(setting.logo || "").trim() ? `<img src="/img/{{logo}}" alt="{{web-name}}" loading="eager" decoding="async" />` : `<span class="${P}-ad">{{web-name}}</span>`}</a>`;
+let dalNo = 0;
+/* altli: alt sayfası olan öğe → <li class="P-dal"> bağlantı + aç düğmesi (aria-expanded) + alt liste; masaüstünde hover/odakla da açılır */
+const navH = (s, dizi, oge, altli) => `<ul class="${P}-${s || "liste"}">${(dizi || kayitlar).map((k) => {
+  if (!altli || !k.alt || !k.alt.length) return `<li>${bagA(k, oge)}</li>`;
+  const gid = `${P}-{{id}}-d${++dalNo}`;
+  return `<li class="${P}-dal${k.dalAktif ? ` ${P}-dal--aktif` : ""}">${bagA(k, oge)}<button type="button" class="${P}-dal-ac" aria-expanded="false" aria-controls="${gid}" aria-label="${esc(k.ad)}"><span class="material-symbols-outlined" aria-hidden="true">expand_more</span></button><ul class="${P}-altliste" id="${gid}">${k.alt.map((a) => `<li>${bagA(a, "aoge")}</li>`).join("")}</ul></li>`;
+}).join("")}</ul>`;
+/* menu-2 logoimgs {dil: dosya} / logoimg: modüle özel logo (boşsa site logosu {{logo}}) */
+const logoOzel = (() => { const l = des.logoimgs; const v = l && typeof l === "object" && l[json.lang] ? l[json.lang] : des.logoimg; return medyaUrl(typeof v === "string" ? v : ""); })();
+const logoH = (s) => `<a class="${P}-${s || "logo"}" href="/{{lang}}/" aria-label="@home@ - {{web-name}}">${logoOzel ? `<img src="${esc(logoOzel)}" alt="{{web-name}}" loading="eager" decoding="async" />` : String(setting.logo || "").trim() ? `<img src="/img/{{logo}}" alt="{{web-name}}" loading="eager" decoding="async" />` : `<span class="${P}-ad">{{web-name}}</span>`}</a>`;
 const ctaH = (s) => (ctaAd && ctaUrl ? `<a class="${P}-${s || "cta"}" href="${esc(ctaUrl)}">${esc(ctaAd)}<span class="material-symbols-outlined mx-flip" aria-hidden="true">arrow_forward</span></a>` : "");
 const telH = (s) => (tel ? `<a class="${P}-${s || "tel"}" href="tel:${esc(tel.replace(/[^+\d]/g, ""))}"><span class="material-symbols-outlined" aria-hidden="true">call</span><bdi dir="ltr">${esc(tel)}</bdi></a>` : "");
 const postaH = (s) => (posta ? `<a class="${P}-${s || "posta"}" href="mailto:${esc(posta)}"><span class="material-symbols-outlined" aria-hidden="true">mail</span><bdi dir="ltr">${esc(posta)}</bdi></a>` : "");

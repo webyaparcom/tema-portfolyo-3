@@ -35,7 +35,8 @@
   .modulex-ust-bolunmus-dugme .material-symbols-outlined { font-size: 20px; }
 
   .modulex-ust-bolunmus { position: relative; z-index: 900; }
-  .modulex-ust-bolunmus-logo { display: inline-flex; flex: none; align-items: center; color: inherit; text-decoration: none; }
+  .modulex-ust-bolunmus-logo { display: inline-flex; flex: 0 1 auto; min-width: 0; align-items: center; color: inherit; text-decoration: none; }
+  /* dar ekranda geniş logo/uzun ad çubuğu taşırmasın: logo daralır (img max-width 100%), ad sarar */
   .modulex-ust-bolunmus-logo img { width: auto; max-height: --logoH--; }
   .modulex-ust-bolunmus-ad { font-family: var(--mx-font-heading, inherit); font-size: 1.3rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
   .modulex-ust-bolunmus-oge { position: relative; display: inline-flex; align-items: center; min-height: 44px; color: inherit; font-weight: 600; text-decoration: none; transition: color 0.2s ease, background 0.2s ease; }
